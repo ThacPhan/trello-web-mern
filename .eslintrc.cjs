@@ -27,5 +27,11 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
+    "no-unused-vars": "warn", // Cảnh báo nếu biến không được sử dụng
+    "import/no-unresolved": "error", // Báo lỗi nếu import không hợp lệ
+    "import/named": "error", // Báo lỗi nếu import không đúng tên
+    "import/namespace": "error", // Báo lỗi nếu import không đúng namespace
+    "import/default": "error", // Báo lỗi nếu import không đúng default
+    "import/export": "error", // Báo lỗi nếu export không hợp lệ
   },
 };
