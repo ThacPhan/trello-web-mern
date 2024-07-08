@@ -1,22 +1,36 @@
-import { cyan, deepOrange, orange, teal } from "@mui/material/colors";
 import { experimental_extendTheme as extendTheme } from "@mui/material/styles";
 
 const theme = extendTheme({
   trelloCustom: {
-    appBarHeight: "48px",
-    boardBarHeight: "58px",
+    appBarHeight: "65px",
+    boardBarHeight: "60px",
   },
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: teal,
-        secondary: deepOrange,
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+          borderWidth: "0.5px",
+          "&:hover": {
+            borderWidth: "0.5px",
+          },
+        },
       },
     },
-    dark: {
-      palette: {
-        primary: cyan,
-        secondary: orange,
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          fontSize: "0.875rem",
+          fieldset: {
+            borderWidth: "0.5px !important",
+          },
+          "&:hover fieldset": {
+            borderWidth: "0.5px !important",
+          },
+          "&.Mui-focused fieldset": {
+            borderWidth: "0.5px !important",
+          },
+        },
       },
     },
   },

@@ -1,1 +1,1 @@
-// Board detail
+// Board list
