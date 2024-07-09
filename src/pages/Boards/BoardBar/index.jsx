@@ -78,7 +78,15 @@ function BoardBar() {
         >
           Invite
         </Button>
-        <AvatarGroup max={3}>
+        <AvatarGroup
+          max={3}
+          sx={{
+            "& .MuiAvatar-root": {
+              color: "white",
+              cursor: "pointer",
+            },
+          }}
+        >
           <Tooltip title={"Thac Phan"}>
             <Avatar alt="Thac Phan" src="/static/images/avatar/1.jpg" />
           </Tooltip>
