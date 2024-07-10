@@ -1,7 +1,7 @@
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import { Box, Button } from "@mui/material";
 import Column from "./Column/Column";
-function ListColumns() {
+function ListColumns({ columns }) {
   return (
     <Box
       sx={{
@@ -13,8 +13,9 @@ function ListColumns() {
         height: "100%",
       }}
     >
-      <Column />
-      <Column />
+      {columns?.map((column) => (
+        <Column key={column._id} column={column} />
+      ))}
 
       {/* button add new column */}
       <Box

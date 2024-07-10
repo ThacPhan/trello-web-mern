@@ -10,22 +10,14 @@ import {
   Typography,
 } from "@mui/material";
 
-function TrelloCard({ hiddenMedia }) {
-  if (hiddenMedia) {
+function TrelloCard({ card }) {
+  const shouldShowCardAction = () => {
     return (
-      <Card
-        sx={{
-          cursor: "pointer",
-          boxShadow: "0 1px 1px rgba(0,0,0,0.2)",
-          overflow: "unset",
-        }}
-      >
-        <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-          <Typography>Test Column 01</Typography>
-        </CardContent>
-      </Card>
+      !!card?.memberIds?.length ||
+      !!card?.comments?.length ||
+      !!card?.attachments?.length
     );
-  }
+  };
   return (
     <Card
       sx={{
@@ -34,26 +26,39 @@ function TrelloCard({ hiddenMedia }) {
         overflow: "unset",
       }}
     >
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="140"
-        image="https://tinypng.com/images/social/website.jpg"
-      />
+      {card?.cover && (
+        <CardMedia
+          component="img"
+          alt="green iguana"
+          height="140"
+          image={card?.cover}
+        />
+      )}
+
       <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-        <Typography>Lizard</Typography>
+        <Typography>{card?.title}</Typography>
       </CardContent>
-      <CardActions sx={{ p: "0 4px 8px" }}>
-        <Button size="small" startIcon={<GroupIcon />}>
-          10
-        </Button>
-        <Button size="small" startIcon={<CommentBankIcon />}>
-          30
-        </Button>
-        <Button size="small" startIcon={<AttachFileIcon />}>
-          80
-        </Button>
-      </CardActions>
+      {shouldShowCardAction() && (
+        <CardActions sx={{ p: "0 4px 8px" }}>
+          {!!card?.memberIds?.length && (
+            <Button size="small" startIcon={<GroupIcon />}>
+              {card?.memberIds?.length}
+            </Button>
+          )}
+
+          {!!card?.comments?.length && (
+            <Button size="small" startIcon={<CommentBankIcon />}>
+              {card?.comments?.length}
+            </Button>
+          )}
+
+          {!!card?.attachments?.length && (
+            <Button size="small" startIcon={<AttachFileIcon />}>
+              {card?.attachments?.length}
+            </Button>
+          )}
+        </CardActions>
+      )}
     </Card>
   );
 }

@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import TrelloCard from "./Card/Card";
 
-function ListCards() {
+function ListCards({ cards }) {
   return (
     <Box
       gap={1}
@@ -26,8 +26,9 @@ function ListCards() {
         },
       }}
     >
-      <TrelloCard />
-      <TrelloCard hiddenMedia />
+      {cards?.map((card) => (
+        <TrelloCard key={card._id} card={card} />
+      ))}
     </Box>
   );
 }
