@@ -16,7 +16,7 @@ import {
 import SvgIcon from "@mui/material/SvgIcon";
 import { useState } from "react";
 import { ReactComponent as Logo } from "~/assets/logo.svg";
-import ModeSelect from "~/components/ModeSelect";
+import ModeSelect from "~/components/ModeSelect/ModeSelect";
 import Profiles from "./Menus/Profiles";
 import Recent from "./Menus/Recent";
 import Started from "./Menus/Started";

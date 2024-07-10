@@ -32,7 +32,6 @@ function BoardBar() {
         alignItems: "center",
         justifyContent: "space-between",
         overflowX: "auto",
-        borderBottom: "1px solid #00bfa5",
         bgcolor: (theme) =>
           theme.palette.mode === "dark" ? " #34495e" : "#1976d2",
       }}
@@ -90,7 +89,7 @@ function BoardBar() {
           <Tooltip title={"Thac Phan"}>
             <Avatar alt="Thac Phan" src="/static/images/avatar/1.jpg" />
           </Tooltip>
-          <Tooltip title={"Hoai Le"}>
+          <Tooltip title="Hoai Le">
             <Avatar alt="Hoai Le" src="/static/images/avatar/2.jpg" />
           </Tooltip>
           <Tooltip title={"Minh Nguyen"}>
