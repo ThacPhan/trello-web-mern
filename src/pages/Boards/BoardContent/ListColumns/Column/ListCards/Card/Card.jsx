@@ -1,3 +1,5 @@
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import CommentBankIcon from "@mui/icons-material/CommentBank";
 import GroupIcon from "@mui/icons-material/Group";
@@ -11,6 +13,26 @@ import {
 } from "@mui/material";
 
 function TrelloCard({ card }) {
+  // drag and drop
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: card._id,
+    data: { ...card },
+  });
+
+  const dndKitCardStyles = {
+    transform: CSS.Translate.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : undefined,
+    border: isDragging ? "1px solid #2ecc71" : undefined,
+  };
+
   const shouldShowCardAction = () => {
     return (
       !!card?.memberIds?.length ||
@@ -20,6 +42,10 @@ function TrelloCard({ card }) {
   };
   return (
     <Card
+      ref={setNodeRef}
+      style={dndKitCardStyles}
+      {...attributes}
+      {...listeners}
       sx={{
         cursor: "pointer",
         boxShadow: "0 1px 1px rgba(0,0,0,0.2)",
