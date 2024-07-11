@@ -1,3 +1,5 @@
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import {
   Cloud,
   ContentCopy,
@@ -25,6 +27,19 @@ import { mapOrder } from "~/utils/sorts";
 import ListCards from "./ListCards/ListCards";
 
 function Column({ column }) {
+  // drag and drop
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
+      id: column._id,
+      data: { ...column },
+    });
+
+  const dndKitColumnStyles = {
+    transform: CSS.Translate.toString(transform),
+    transition,
+  };
+
+  // select menu
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -33,11 +48,16 @@ function Column({ column }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  // sort column
   const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
   return (
     <Stack
+      ref={setNodeRef}
+      style={dndKitColumnStyles}
+      {...attributes}
+      {...listeners}
       ml={2}
-      // p={2}
       display="flex"
       spacing={2}
       sx={{
